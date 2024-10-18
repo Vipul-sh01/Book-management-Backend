@@ -1,10 +1,13 @@
 import { Router } from "express";
 import { upload } from "../middleware/multer.js";
-import { publishBook, deleteBook } from "../controllers/books.controllers.js";
+import { publishBook, updateBook, deleteBook } from "../controllers/books.controllers.js";
 
 const router = Router();
 
 router.route('/publish').post(upload.fields([{name: 'bookImage', maxCount:1,},],), publishBook);
-router.route('/Delete').delete(deleteBook);
+
+router.put('/:bookId/update', upload.fields([{ name: 'bookImage', maxCount: 1 }]), updateBook);
+
+router.delete('/bookId', deleteBook);
 
 export default router;
