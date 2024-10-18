@@ -5,9 +5,7 @@ import { publishBook, updateBook, deleteBook } from "../controllers/books.contro
 const router = Router();
 
 router.route('/publish').post(upload.fields([{name: 'bookImage', maxCount:1,},],), publishBook);
-
-router.put('/:bookId/update', upload.fields([{ name: 'bookImage', maxCount: 1 }]), updateBook);
-
+router.route('/:bookId/update').put(upload.fields([{name: 'bookImage', maxCount:1,},],), publishBook);
 router.delete('/bookId', deleteBook);
 
 export default router;
